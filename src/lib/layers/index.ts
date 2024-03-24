@@ -5,3 +5,4 @@ export { Vector } from "./Vector";
 export { WMS } from "./WMS";
 export { WebGLWMS } from "./WebGLWMS";
 export { HeatmapTile } from "./HeatmapTile";
+export { WindLayer } from "./WindLayer";

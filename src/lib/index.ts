@@ -9,3 +9,4 @@ export { HeatmapTile } from "./layers";
 export { Vector } from "./layers";
 export { WMS } from "./layers";
 export { WebGLWMS } from "./layers";
+export { WindLayer } from "./layers";
