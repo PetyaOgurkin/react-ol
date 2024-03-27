@@ -54,6 +54,7 @@ export function Vector({
           features,
         }),
         extent,
+        style,
         maxResolution,
         minResolution,
         opacity,
@@ -72,7 +73,11 @@ export function Vector({
 
   useEffect(() => {
     layer?.setStyle(style);
-  }, [style, layer]);
+  }, [style]);
+
+  useEffect(() => {
+    layer?.getSource()?.setUrl(url || "");
+  }, [url]);
 
   useLayerBasePropsRefresh(layer, { extent, maxResolution, minResolution, opacity, properties, zIndex, visible });
   useVectorLayerEvenets(map, layer, { click: onClick, pointermove: onPointermove, contextmenu: onContextmenu });

@@ -16,43 +16,31 @@ type Props = {
   windProps: Partial<IWindOptions>;
 };
 
+type Header = {
+  dx: number;
+  dy: number;
+  la1: number;
+  la2: number;
+  lo1: number;
+  lo2: number;
+  nx: number;
+  ny: number;
+  parameterCategory: number;
+  parameterNumber: number;
+  parameterNumberName: "U-component_of_wind" | "V-component_of_wind";
+};
+
+type Data = { header: Header; data: Float32Array }[];
+
 export function WindLayer({ children, windProps, extent, url, projection, tileGrid }: Props) {
   const { map } = useContext(MapContext);
   const [layer, setLayer] = useState<OlWindLayer>();
 
-  useEffect(() => {
-    if (!map) return;
-
-    const layerObj = new OlWindLayer([], {
-      ...windProps,
-      projection,
-      tileGrid,
-    });
-
-    map.addLayer(layerObj);
-
-    const zoomHandler = () => {
-      const zoom = map.getView().getZoom()! < 2 ? 2 : map.getView().getZoom()!;
-
-      layerObj?.setWindOptions({
-        velocityScale: 1 / zoom ** 3.5,
-      });
-    };
-
-    map.on("moveend", zoomHandler);
-
-    setLayer(layerObj);
-
-    return () => {
-      map.removeLayer(layerObj);
-    };
-  }, [map]);
+  const [data, setData] = useState<Data>();
 
   useEffect(() => {
-    if (!layer || !url.u || !url.v) return;
-
     Promise.all([imgToArray(url.u), imgToArray(url.v)]).then((data) => {
-      const res = [
+      const res: Data = [
         {
           header: {
             dx: (extent[2] - extent[0]) / data[0].width,
@@ -88,14 +76,56 @@ export function WindLayer({ children, windProps, extent, url, projection, tileGr
         },
       ];
 
-      layer.setData(res);
+      setData(res);
     });
-  }, [layer, url.u, url.v]);
+  }, [JSON.stringify({ url, extent })]);
 
   useEffect(() => {
-    if (!layer) return;
+    if (!map || !data) return;
 
-    layer.setWindOptions(windProps);
+    if (layer) return;
+
+    const layerObj = new OlWindLayer(data, {
+      ...windProps,
+      projection,
+      tileGrid,
+    });
+
+    const zoom = map.getView().getZoom()! < 2 ? 2 : map.getView().getZoom()!;
+
+    layerObj.setWindOptions({
+      velocityScale: 1 / zoom ** 3.5,
+    });
+
+    map.addLayer(layerObj);
+
+    const zoomHandler = () => {
+      const zoom = map.getView().getZoom()! < 2 ? 2 : map.getView().getZoom()!;
+
+      layerObj?.setWindOptions({
+        velocityScale: 1 / zoom ** 3.5,
+      });
+    };
+
+    map.on("moveend", zoomHandler);
+
+    setLayer(layerObj);
+  }, [map, data]);
+
+  useEffect(() => {
+    return () => {
+      if (map && layer) {
+        map.removeLayer(layer);
+      }
+    };
+  }, [map, layer]);
+
+  useEffect(() => {
+    layer?.setData(data);
+  }, [data]);
+
+  useEffect(() => {
+    layer?.setWindOptions(windProps);
   }, [JSON.stringify(windProps)]);
 
   return <MapContext.Provider value={{ map, layer }}>{children}</MapContext.Provider>;
