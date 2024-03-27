@@ -77,6 +77,7 @@ export function Vector({
 
   useEffect(() => {
     layer?.getSource()?.setUrl(url || "");
+    layer?.getSource()?.refresh()
   }, [url]);
 
   useLayerBasePropsRefresh(layer, { extent, maxResolution, minResolution, opacity, properties, zIndex, visible });

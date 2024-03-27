@@ -1,7 +1,7 @@
 {
   "name": "@petyaogurkin/react-ol",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "repository": "github:PetyaOgurkin/react-ol",
   "type": "module",
   "main": "dist/index.js",
