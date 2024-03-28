@@ -2,7 +2,6 @@ import Overlay from "ol/Overlay";
 import { Coordinate } from "ol/coordinate";
 import { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { MapContext } from "./MapContext";
-import { createPortal } from "react-dom";
 
 type Props = {
   children?: ReactNode;

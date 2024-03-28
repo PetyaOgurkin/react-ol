@@ -20,7 +20,7 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "@petyaogurkin/ol-heatmap-tile": "^2.2.1",
+    "@petyaogurkin/ol-heatmap-tile": "^2.3.0",
     "ol": "^9.0.0",
     "ol-wind": "^1.1.7",
     "react": "^18.2.0",
@@ -28,13 +28,13 @@
     "wind-core": "^1.1.6"
   },
   "devDependencies": {
-    "@petyaogurkin/ol-heatmap-tile": "^2.2.1",
+    "@petyaogurkin/ol-heatmap-tile": "^2.3.0",
     "@types/node": "^20.11.30",
     "@types/proj4": "^2.5.5",
-    "@types/react": "^18.2.69",
-    "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.23",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -46,7 +46,7 @@
     "react-dom": "^18.2.0",
     "typescript": "^5.4.3",
     "vite": "^5.2.6",
-    "vite-plugin-dts": "^3.7.3",
+    "vite-plugin-dts": "^3.8.1",
     "wind-core": "^1.1.6"
   }
 }
