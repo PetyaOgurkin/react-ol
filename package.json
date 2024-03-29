@@ -1,7 +1,7 @@
 {
   "name": "@petyaogurkin/react-ol",
   "private": false,
-  "version": "1.0.5",
+  "version": "1.0.6",
   "repository": "github:PetyaOgurkin/react-ol",
   "type": "module",
   "main": "dist/index.js",
@@ -20,7 +20,7 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "@petyaogurkin/ol-heatmap-tile": "^2.3.0",
+    "@petyaogurkin/ol-heatmap-tile": "^2.3.1",
     "ol": "^9.0.0",
     "ol-wind": "^1.1.7",
     "react": "^18.2.0",
@@ -28,7 +28,7 @@
     "wind-core": "^1.1.6"
   },
   "devDependencies": {
-    "@petyaogurkin/ol-heatmap-tile": "^2.3.0",
+    "@petyaogurkin/ol-heatmap-tile": "^2.3.1",
     "@types/node": "^20.11.30",
     "@types/proj4": "^2.5.5",
     "@types/react": "^18.2.73",
@@ -45,7 +45,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.4.3",
-    "vite": "^5.2.6",
+    "vite": "^5.2.7",
     "vite-plugin-dts": "^3.8.1",
     "wind-core": "^1.1.6"
   }
