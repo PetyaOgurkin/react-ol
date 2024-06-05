@@ -6,19 +6,21 @@ import { Extent } from "ol/extent";
 import { useMapEvents } from "./hooks";
 import { EventFunction, MapPropsType } from "./types";
 import { useMapPropsRefresh } from "./hooks";
+import Control from "ol/control/Control";
 
 type Props = MapPropsType & {
   children?: any;
   className?: string;
   style?: React.CSSProperties;
   view?: View;
+  controls?: Control[];
   projection?: ProjectionLike;
   onClick?: EventFunction;
   onPointermove?: EventFunction;
   onMoveend?: EventFunction;
 };
 
-export function Map({ children, className, style, center, zoom, view, onClick: click, onPointermove: pointermove }: Props) {
+export function Map({ children, className, style, center, zoom, view, onClick: click, onPointermove: pointermove, controls }: Props) {
   const [map, setMap] = useState<OlMap>();
   const containerId = useId();
 
@@ -28,6 +30,7 @@ export function Map({ children, className, style, center, zoom, view, onClick: c
     const mapInstance = new OlMap({
       target: containerId,
       view,
+      controls,
     });
 
     setMap(mapInstance);

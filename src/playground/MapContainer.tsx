@@ -12,6 +12,7 @@ export default function MapContainer() {
           zoom: 5,
         })
       }
+      controls={[]}
     >
       <Tile url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
     </Map>
